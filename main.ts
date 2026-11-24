@@ -46,6 +46,11 @@ function validateLine(line) {
   if (line.trim().length === 0) {
     throw new Error('Line must not be only whitespace.');
   }
+  // No leading or trailing spaces: the judge reads the file exactly,
+  // so stray padding would be part of the entry.
+  if (line !== line.trim()) {
+    throw new Error('Line must not start or end with whitespace.');
+  }
 }
 
 validateLine(ROAST);
